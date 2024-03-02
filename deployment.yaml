@@ -1,33 +1,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "hello-world.fullname" . }}
+  name: {{ include "MEDIA-WIKI.fullname" . }}
+  namespace: {{ .Values.namespace }}
   labels:
-    {{- include "hello-world.labels" . | nindent 4 }}
+    {{- include "MEDIA-WIKI.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "hello-world.selectorLabels" . | nindent 6 }}
+      {{- include "MEDIA-WIKI.selectorLabels" . | nindent 6 }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 5
+ minReadySeconds: 5  
   template:
     metadata:
       labels:
-        {{- include "hello-world.selectorLabels" . | nindent 8 }}
+        {{- include "MEDIA-WIKI.selectorLabels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ include "hello-world.serviceAccountName" . }}
+      serviceAccountName: {{ include "MEDIA-WIKI.serviceAccountName" . }}
+      spec:
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
+      - name: mediawiki
+        image: mediawiki:1.14.2
+        ports:
+        - containerPort: 80
           livenessProbe:
             httpGet:
-              path: /
+              path: /sample
               port: http
           readinessProbe:
+            periodSeconds: 15
+            timeoutSeconds: 2
+            successThreshold: 2
+            failureThreshold: 2
             httpGet:
-              path: /
-              port: http
+              path: /health
+              port: 80
