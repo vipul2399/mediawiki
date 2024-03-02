@@ -1,0 +1,66 @@
+{
+  "APPLICATION" : {
+    "NAME" : "MEDIA",
+    "ENV_SUFFIX" : "AKS"
+},
+"RESOURCES":[
+  {
+    "TYPE" : "AKS"
+    "SUFFIX" : "MEDIA"
+    "PROPERTIES" : {
+      "clusterPoolProfile": {
+          "values" : [
+            {
+              "name" : "masternode",
+              "count" : 1,
+              "maxcount" : 5,
+              "mincount" : 1,
+              "enableAutoScaling" : true,
+              "vmsize" : "standard_D4s_v3",
+              "osDiskSizeGB" : 100,
+              "osDiskType" : "Managed"
+              "vnetSubnetID" : "subscriptions/subscriptions-id/RG-GROUP/.../.../USER-0101"
+              "maxPods" : 110,
+              "type" : "VirtualMachineScaleSets",
+              "mode" : "System"
+              "availabilityZones" : [
+                "1",
+                "2",
+                "3"
+              ],
+              "osType" : "Linux"
+              "nodeTaints" : [
+                "CriticalAddonsOnly=true:NoSchedule"
+              ]
+            },
+            {
+              "name" : "workernode",
+              "count" : 3,
+              "maxcount" : 5,
+              "mincount" : 3,
+              "enableAutoScaling" : true,
+              "vmsize" : "standard_D4s_v3",
+              "osDiskSizeGB" : 100,
+              "osDiskType" : "Managed"
+              "vnetSubnetID" : "subscriptions/subscriptions-id/RG-GROUP/.../.../USER-0101"
+              "maxPods" : 110,
+              "type" : "VirtualMachineScaleSets",
+              "mode" : "User"
+              "availabilityZones" : [
+                "1",
+                "2",
+                "3"
+              ],
+              "osType" : "Linux"
+            }
+          ]
+      },
+    "autoScalerProfile" : {
+      "balance-similar-node-groups" : "false"
+    },
+    "kubernetesVersion" : {
+      "value" : "1.28.3"
+    },
+    "uptimeSlaTier" : {
+      
+  
