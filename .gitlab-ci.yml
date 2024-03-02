@@ -1,2 +1,2 @@
 include:
-  - local: gitlab-ci-docker.yml
+  - local: gitlab-docker-ci.yml
