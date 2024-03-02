@@ -62,5 +62,26 @@
       "value" : "1.28.3"
     },
     "uptimeSlaTier" : {
+      "value" : "Standard"
+    },
+    "enableOpenServiceMesh" : {
+      "value" : true
+    },
+    "enableKeda" : {
+      "value" : false
+    },
+    "enableAzureKeyVaultSecretProvider" : {
+      "value" : false
+    },
+    "enableDiskCsiDriver" : {
+      "value" : false
+    },
+    "enableBlobCsiDriver" : {
+      "value" : true
+    }
+  },
+  "POD_IDENTITIES" : [
+  {
+    "Deploy" : "azcli"
       
   
