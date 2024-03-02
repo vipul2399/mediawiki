@@ -1,0 +1,26 @@
+docker-image:
+  stage: build_publish_image
+  image:
+    name: gcr.io/kaniko-project/executor:v1.14.0-debug
+    variables :
+    DOCKER-IAMGE-NAME: "mediawiki-sample"
+    DOCKER-HOST: tcp://localhost:2376
+    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_TLS_VERIFY: 1
+  services:
+   -name: gcr.io/kaniko-project/executor:v1.14.0-debug
+   alias: docker
+   command:
+   - /bin/sh
+   - -c
+   - l
+     ls /etc/ssl/certs/
+     ls /usr/local/share/ca-certificates/
+  before_script:
+    - ls -ltr
+    - echo "building docker image"
+  script:
+    - /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "Dockerfile"
+      --destination "container-registry/mediawiki/$DOCKER-IAMGE-NAME:0.0.1
