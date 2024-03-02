@@ -42,7 +42,7 @@
               "vmsize" : "standard_D4s_v3",
               "osDiskSizeGB" : 100,
               "osDiskType" : "Managed"
-              "vnetSubnetID" : "subscriptions/subscriptions-id/RG-GROUP/.../.../USER-0101"
+              "vnetSubnetID" : "/subscriptions/subscriptions-id/RG-GROUP/.../.../USER-0101"
               "maxPods" : 110,
               "type" : "VirtualMachineScaleSets",
               "mode" : "User"
@@ -82,6 +82,27 @@
   },
   "POD_IDENTITIES" : [
   {
-    "Deploy" : "azcli"
+    "Deploy" : "azcli",
+    "Value" : {
+      "name" : "identity1",
+      "namespace" : [
+        "media"
+      ],
+      "selector" : "selector1",
+      "identity" : "evaUami"
+    }
+  }
+]
+  },
+  {
+    "TYPE" : "APPINS",
+    "SUFFIX" : "media",
+    "PROPERTIES" : {
+      "RegionType" : "Primary",
+      "laWorkspaceId" : "/subscriptions/subscriptions-id/RG-GROUP/.../workspace/la-region-frmwrk1"
+    }
+  }
+]
+}
       
   
