@@ -1,0 +1,32 @@
+{
+  "SUBSCRIPTION" :{
+    "ID" : " ",
+    "NAME" : " ",
+  },
+  "TENANT_ID" : " ",
+  "LOCATION" : {
+     "RegionName" : " ",
+     "RegionCode" : " ",
+     "RegionType" : " "
+  }
+  "TAGS" : {
+},
+"UAMIS" : {
+  "ID" : " "
+},
+"DISK_ENCRYPTION_SET" : {
+  "ID" : " "
+},
+"CMK_KEYVAULT" : {
+  "ID" : " "
+},
+"VNET_ID" : {
+  "ID" : " "
+},
+"AKS_KEYVAULT" : {
+  "ID" : " "
+},
+"PE_SUBNET_ID" : {
+  "ID" : " "
+}
+}
